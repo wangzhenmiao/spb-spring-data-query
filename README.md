@@ -21,17 +21,20 @@
 三、持久化类关联映射的配置，此处是双向关联
 
 1、student类中
-      // 学生与班级是多对一的关系，这里配置的是双向关联
-         @ManyToOne(fetch=FetchType.LAZY,
+     
+     // 学生与班级是多对一的关系，这里配置的是双向关联
+        
+    @ManyToOne(fetch=FetchType.LAZY,
             targetEntity=Clazz.class
-          )
-          @JoinColumn(name="clazzId",referencedColumnName="code")
-          private Clazz clazz ;
+    )
+    @JoinColumn(name="clazzId",referencedColumnName="code")
+    private Clazz clazz ;
     
  code是clazz类中的班级id
     
 2、班级类中
-        // 班级与学生是一对多的关联
+         // 班级与学生是一对多的关联
+         
          @OneToMany(
             fetch=FetchType.LAZY,
             targetEntity=Student.class,
