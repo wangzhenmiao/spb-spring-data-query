@@ -18,7 +18,7 @@
 
 2、@Query注解，定在在数据访问层接口的方法上实现查询
 
-三、持久化类关联映射的配置，此处是双向关联
+三、持久化类bean层中，关联映射的配置，此处是双向关联
 
 1、student类中
      
@@ -43,5 +43,32 @@
          private Set<Student> students = new HashSet<>();
   
 既在班级中关联了学生对象，在学生对象中也关联了班级对象。
+
+四、数据访问层接口repository层中，进行相关的CRUD操作
+
+    /**
+     * 根据班级名称查询这个班级下所有的学生信息
+     * 相当于JPQL语句： select s from Student s where s.clazz.name = ?1
+     * @param clazzName
+     * @return
+     */
+    List<Student> findByClazz_name(String clazzName);
+
+    /**
+     * @Query写法
+     * 根据班级名称查询这个班级下所有的学生信息
+     * ?1此处使用的是参数的位置，代表的是第一个参数
+     * 此写法与 findByClazz_name方法实现的功能完全一致
+     * */
+    @Query("select s from Student s where s.clazz.name = ?1")
+    List<Student> findStudentsByClazzName(String clazzName);
+    
+1、第一个是关联查询，第二个是query查询。两个函数作用一致。
+
+2、?1 是第一个参数的意思
+
+3、@query查询可以直接定义JPQL语句，进行数据库的访问操作
+
+
 
 
