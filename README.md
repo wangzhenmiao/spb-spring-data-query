@@ -10,7 +10,7 @@
 应该是在bean的注解实现的吧
 
     @Entity
-@Table(name="tb_clazz")
+    @Table(name="tb_clazz")
 
 二、spring data查询的实现
 1、关联查询，通过方法名中的“_”下划线来标识
